@@ -84,7 +84,7 @@ function PersonalHealthRecord({ onComplete }) {
               onChange={(e) => setFormData({...formData, profession: e.target.value})} 
               style={{marginTop:'0px', padding:'12px'}}
             >
-              <option>Student (Sedentary)</option>
+              <option>Student / Sedentary (Little exercise)</option>
               <option>Office Job / Light Active (1-3 days/week)</option>
               <option>Standing Job / Moderate (3-5 days/week)</option>
               <option>Athlete / Very Active (6-7 days/week)</option>
