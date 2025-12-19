@@ -20,7 +20,7 @@ function DailyLog({ tracker }) {
         <div style={{fontSize:'60px', marginBottom:'10px'}}>✅</div>
         <h1 style={{color:'#32CD32', fontSize:'28px', marginBottom:'20px'}}>Day Completed!</h1>
         
-        <div className="card-list" style={{width:'100%', paddingBottom:'20px'}}>
+        <div className="card-list">
           
           {/* 1. Main Stats (Calories & Meals) */}
           <div style={{display:'flex', gap:'10px', marginBottom:'10px'}}>

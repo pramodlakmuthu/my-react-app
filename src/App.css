@@ -10,7 +10,10 @@ body {
   background-color: #1c1c1e; /* Phone පිටුපස පසුබිම (Dark) */
   display: flex; justify-content: center; align-items: center;
   height: 100vh; overflow: hidden;
+  box-sizing: border-box;
 }
+
+* { box-sizing: border-box; }
 
 /* App Container (Phone Screen) */
 .app-container {
@@ -26,18 +29,22 @@ body {
   overflow-y: auto; 
   overflow-x: hidden;
   padding-bottom: 110px; /* යට Nav Bar එකට ඉඩ තැබීම */
-  scrollbar-width: none; 
+  scrollbar-width: none;
+  box-sizing: border-box;
+  width: 100%;
 }
 .content-area::-webkit-scrollbar { display: none; }
 
 /* Global Helpers */
 .page-container {
   display: flex; flex-direction: column; min-height: 100%;
+  box-sizing: border-box;
 }
 .center-content { 
   display: flex; flex-direction: column; 
   justify-content: center; height: 100%; 
-  padding: 0 25px; text-align: center; 
+  padding: 0 25px; text-align: center;
+  box-sizing: border-box;
 }
 
 /* Headers */
@@ -56,7 +63,7 @@ body {
 .header-simple p { color: #888; font-size: 16px; margin-top: 5px; }
 
 /* Inputs & Buttons */
-.card-list { padding: 0 25px; flex: 1; display: flex; flex-direction: column; }
+.card-list { padding: 0 25px; flex: 1; display: flex; flex-direction: column; box-sizing: border-box; }
 
 .input-field {
   width: 100%; padding: 18px; background: #f9fafb;
@@ -69,24 +76,24 @@ body {
   background: #32CD32; color: white; border: none; width: 100%;
   padding: 18px; border-radius: 18px; font-size: 18px; font-weight: 600;
   cursor: pointer; margin-top: 15px; box-shadow: 0 8px 20px rgba(50, 205, 50, 0.3);
-  transition: transform 0.2s;
+  transition: transform 0.2s; box-sizing: border-box;
 }
 .btn-primary:active { transform: scale(0.98); }
 
 .btn-secondary {
   background: transparent; color: #666; border: 2px solid #eee;
   width: 100%; padding: 15px; border-radius: 18px; font-weight: 600;
-  cursor: pointer; margin-top: 15px;
+  cursor: pointer; margin-top: 15px; box-sizing: border-box;
 }
 
 /* Cards */
 .detail-card {
   background: white; padding: 20px; border-radius: 22px; margin-bottom: 15px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #f0f0f0;
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
 }
-.detail-card h4 { margin: 0 0 5px; font-size: 16px; color: #222; }
-.detail-card p { margin: 0; font-size: 13px; color: #888; }
+.detail-card h4 { margin: 0 0 5px; font-size: 16px; color: #222; word-wrap: break-word; }
+.detail-card p { margin: 0; font-size: 13px; color: #888; word-wrap: break-word; }
 .cal-badge {
   background: #ecfdf5; color: #059669; padding: 8px 12px; 
   border-radius: 12px; font-size: 13px; font-weight: bold;

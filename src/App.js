@@ -18,7 +18,7 @@ function App() {
   });
   const [selectedDiet, setSelectedDiet] = useState(null);
   const [tracker, setTracker] = useState({ 
-    consumed: 0, target: 2000, meals: [] 
+    consumed: 0, target: 2000, meals: [], protein: 0, carbs: 0, fiber: 0
   });
 
   const handleNav = (target) => {

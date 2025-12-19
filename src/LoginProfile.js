@@ -12,7 +12,7 @@ function LoginProfile({ handleNav }) {
               <span style={{fontSize:'40px', color:'white'}}>🍏</span>
            </div>
            <h2 style={{color:'#32CD32', marginTop:'10px'}}>NutriPlan</h2>
-           <p style={{fontSize:'12px', color:'#555'}}>Login to continue</p>
+           <p style={{fontSize:'12px', color:'#555'}}>Create personalized nutition journey</p>
         </div>
 
         <h1 style={{fontSize:'28px', marginBottom:'20px'}}>Sign In</h1>

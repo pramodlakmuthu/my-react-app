@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function MealPlans() {
+function MealPlans({ selectedDiet, setSelectedDiet }) {
   // කුමන Plan එකද Open වෙලා තියෙන්නේ කියලා බලාගන්න
   const [activePlan, setActivePlan] = useState(null);
 
@@ -67,7 +67,7 @@ function MealPlans() {
         <p>Tap on a plan to view the menu</p>
       </div>
 
-      <div className="card-list" style={{background:'transparent', boxShadow:'none', padding:0}}>
+      <div className="card-list" style={{background:'transparent', boxShadow:'none'}}>
         
         {/* Plans List */}
         {Object.keys(plans).map((key) => {
