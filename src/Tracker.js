@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Tracker({ tracker, setTracker }) {
-  // Input වලට අදාළ State
+  
   const [input, setInput] = useState({
     name: '',
     calories: '',
@@ -10,12 +10,12 @@ function Tracker({ tracker, setTracker }) {
     fiber: ''
   });
 
-  // කෑමක් Add කරන Function එක
+ 
   const addMeal = () => {
     if (input.name && input.calories) {
-      // අංක වලට හරවා ගැනීම (Convert Inputs to Numbers)
+      //  (Convert Inputs to Numbers)
       const cals = parseInt(input.calories);
-      const prot = parseInt(input.protein) || 0; // හිස් නම් 0 ගන්නවා
+      const prot = parseInt(input.protein) || 0; 
       const carb = parseInt(input.carbs) || 0;
       const fib = parseInt(input.fiber) || 0;
 
@@ -28,17 +28,17 @@ function Tracker({ tracker, setTracker }) {
         fiber: fib
       };
 
-      // App.js එකේ තියෙන Main State එක Update කිරීම (Totals එකතු කිරීම)
+     
       setTracker({
         ...tracker,
         consumed: tracker.consumed + cals,
         protein: tracker.protein + prot,
         carbs: tracker.carbs + carb,
         fiber: tracker.fiber + fib,
-        meals: [newMeal, ...tracker.meals] // අලුත් කෑම ලිස්ට් එකේ උඩට
+        meals: [newMeal, ...tracker.meals] 
       });
 
-      // Inputs හිස් කිරීම
+    
       setInput({ name: '', calories: '', protein: '', carbs: '', fiber: '' });
     }
   };
@@ -63,7 +63,7 @@ function Tracker({ tracker, setTracker }) {
   };
 
   const statValueStyle = {
-    fontSize: '18px', // අකුරු ටිකක් ලොකු කළා පැහැදිලිව පෙනෙන්න
+    fontSize: '18px', 
     fontWeight: 'bold',
     color: '#333'
   };
@@ -91,7 +91,7 @@ function Tracker({ tracker, setTracker }) {
               {/* Progress Bar */}
               <div style={{width:'100%', height:'10px', background:'#eee', borderRadius:'5px', marginTop:'10px', overflow:'hidden'}}>
                  <div style={{
-                   width: `${Math.min((tracker.consumed / tracker.target) * 100, 100)}%`, 
+                   width: `${Math.min((tracker.consumed / tracker.target) * 100, 100)}%`,
                    height:'100%', 
                    background:'#32CD32',
                    transition: 'width 0.5s ease'
@@ -99,7 +99,7 @@ function Tracker({ tracker, setTracker }) {
               </div>
            </div>
 
-           {/* --- Nutrients Totals Row (මෙන්න ඔයා ඉල්ලපු කොටස) --- */}
+           
            <div style={{display:'flex', gap:'10px', borderTop:'1px solid #eee', paddingTop:'20px'}}>
               
               {/* Protein Box */}
