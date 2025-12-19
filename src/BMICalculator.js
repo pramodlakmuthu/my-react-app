@@ -6,10 +6,18 @@ function BMICalculator({ bmi, setBmi }) {
   const [deadline, setDeadline] = useState(null);
 
   const calculateBMI = () => {
-    if (bmi.height && bmi.weight) {
+    if (bmi.height && bmi.weight && !isNaN(bmi.height) && !isNaN(bmi.weight)) {
+      const height = parseFloat(bmi.height);
+      const weight = parseFloat(bmi.weight);
+      
+      if (height <= 0 || weight <= 0) {
+        alert("Please enter valid height and weight values!");
+        return;
+      }
+      
       // 1. Calculate BMI
-      const h_meters = bmi.height / 100;
-      const bmiVal = (bmi.weight / (h_meters * h_meters)).toFixed(1);
+      const h_meters = height / 100;
+      const bmiVal = (weight / (h_meters * h_meters)).toFixed(1);
       
       let status = 'Normal Weight';
       if (bmiVal < 18.5) status = 'Underweight';
@@ -21,8 +29,9 @@ function BMICalculator({ bmi, setBmi }) {
 
       // 2. Calculate Deadline Logic
       let estimatedDate = '';
-      if (goalSettings.targetWeight) {
-        const diff = Math.abs(bmi.weight - goalSettings.targetWeight); // Difference in Kg
+      if (goalSettings.targetWeight && !isNaN(goalSettings.targetWeight)) {
+        const targetWeight = parseFloat(goalSettings.targetWeight);
+        const diff = Math.abs(weight - targetWeight); // Difference in Kg
         const weeks = diff / parseFloat(goalSettings.weeklyLoss); // Weeks needed
         const days = weeks * 7;
         
@@ -35,7 +44,7 @@ function BMICalculator({ bmi, setBmi }) {
       // Update Main State
       setBmi({ ...bmi, value: bmiVal, status: status, minWeight: minW, maxWeight: maxW });
     } else {
-        alert("Please enter Height and Current Weight!");
+        alert("Please enter valid Height and Weight!");
     }
   };
 
@@ -43,13 +52,13 @@ function BMICalculator({ bmi, setBmi }) {
     <div className="page-container">
       <div className="header-section">
         <h1>Smart Calculator</h1>
-        <p>BMI & Goal Planner</p>
+        <p>Track Your BMI & set your health goals</p>
       </div>
 
       {!bmi.value ? (
         <div className="card-list">
           {/* Section 1: Basic Measurements */}
-          <h3 style={{fontSize:'16px', color:'#32CD32', margin:'10px 0'}}>Current Stats</h3>
+          <h3 style={{fontSize:'16px', color:'#32CD32', margin:'10px 0'}}>Current Measurments</h3>
           <div style={{display:'flex', gap:'10px'}}>
              <div style={{flex:1}}>
                 <label style={{fontWeight:'bold', fontSize:'13px', marginLeft:'5px'}}>Height (cm)</label>
@@ -62,18 +71,18 @@ function BMICalculator({ bmi, setBmi }) {
           </div>
 
           {/* Section 2: Goals */}
-          <h3 style={{fontSize:'16px', color:'#32CD32', margin:'10px 0'}}>Your Goal</h3>
+          <h3 style={{fontSize:'16px', color:'#32CD32', margin:'10px 0'}}>Your Goals</h3>
           <label style={{fontWeight:'bold', fontSize:'13px', marginLeft:'5px'}}>Target Weight (kg)</label>
           <input className="input-field" placeholder="Ex: 65" type="number" value={goalSettings.targetWeight} onChange={e=>setGoalSettings({...goalSettings, targetWeight:e.target.value})} />
           
-          <label style={{fontWeight:'bold', fontSize:'13px', marginLeft:'5px'}}>Weekly Pace</label>
+          <label style={{fontWeight:'bold', fontSize:'13px', marginLeft:'5px'}}>Weekly Weight Goal</label>
           <select className="input-field" value={goalSettings.weeklyLoss} onChange={e=>setGoalSettings({...goalSettings, weeklyLoss:e.target.value})}>
             <option value="0.25">Slow & Steady (0.25 kg/week)</option>
             <option value="0.5">Recommended (0.5 kg/week)</option>
             <option value="1.0">Intense (1 kg/week)</option>
           </select>
 
-          <button className="btn-primary" onClick={calculateBMI}>Calculate Plan</button>
+          <button className="btn-primary" onClick={calculateBMI}>Calculate BMI</button>
         </div>
       ) : (
         <div className="page-container">

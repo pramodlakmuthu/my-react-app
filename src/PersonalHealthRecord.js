@@ -5,7 +5,7 @@ function PersonalHealthRecord({ onComplete }) {
     gender: 'Female',
     age: '',
     goal: 'Weight Loss',
-    profession: 'Student (Sedentary)'
+    profession: 'Student / Sedentary (Little exercise)'
   });
 
   return (

@@ -12,12 +12,17 @@ function Tracker({ tracker, setTracker }) {
 
  
   const addMeal = () => {
-    if (input.name && input.calories) {
+    if (input.name && input.calories && !isNaN(parseInt(input.calories))) {
       //  (Convert Inputs to Numbers)
       const cals = parseInt(input.calories);
       const prot = parseInt(input.protein) || 0; 
       const carb = parseInt(input.carbs) || 0;
       const fib = parseInt(input.fiber) || 0;
+
+      if (cals <= 0) {
+        alert("Please enter a valid calorie amount greater than 0!");
+        return;
+      }
 
       const newMeal = { 
         id: Date.now(), 
@@ -40,6 +45,8 @@ function Tracker({ tracker, setTracker }) {
 
     
       setInput({ name: '', calories: '', protein: '', carbs: '', fiber: '' });
+    } else {
+      alert("Please enter a valid meal name and calorie amount!");
     }
   };
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-function MealPlans() {
+function MealPlans({ selectedDiet, setSelectedDiet }) {
   
-  const [activePlan, setActivePlan] = useState(null);
+  const [activePlan, setActivePlan] = useState(selectedDiet);
 
   const plans = {
     balanced: {
-      title: 'Vegan',
+      title: 'Balanced Diet',
       desc: 'Mix of carbs, protein & fats.',
       color: '#32CD32',
       meals: {
@@ -54,9 +54,11 @@ function MealPlans() {
   
   const togglePlan = (key) => {
     if (activePlan === key) {
-      setActivePlan(null); 
+      setActivePlan(null);
+      setSelectedDiet(null);
     } else {
-      setActivePlan(key); 
+      setActivePlan(key);
+      setSelectedDiet(key);
     }
   };
 
