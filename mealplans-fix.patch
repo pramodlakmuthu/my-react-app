@@ -1,0 +1,9 @@
+*** Begin Patch
+*** Update File: src/MealPlans.js
+@@
+-                border: isOpen ? 2px solid ${plan.color} : '1px solid #f0f0f0',
++                border: isOpen ? `2px solid ${plan.color}` : '1px solid #f0f0f0',
+@@
+-                background: isOpen ? ${plan.color}15 : 'transparent'
++                background: isOpen ? `${plan.color}15` : 'transparent'
+*** End Patch

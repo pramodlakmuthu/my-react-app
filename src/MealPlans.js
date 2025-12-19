@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-function MealPlans({ selectedDiet, setSelectedDiet }) {
-  // කුමන Plan එකද Open වෙලා තියෙන්නේ කියලා බලාගන්න
+function MealPlans() {
+  
   const [activePlan, setActivePlan] = useState(null);
 
   const plans = {
     balanced: {
-      title: 'Balanced Diet',
+      title: 'Vegan',
       desc: 'Mix of carbs, protein & fats.',
       color: '#32CD32',
       meals: {
@@ -51,25 +51,27 @@ function MealPlans({ selectedDiet, setSelectedDiet }) {
     }
   };
 
-  // Click කළාම Open/Close වෙන Function එක
+  
   const togglePlan = (key) => {
     if (activePlan === key) {
-      setActivePlan(null); // දැනට Open නම් වහන්න
+      setActivePlan(null); 
     } else {
-      setActivePlan(key); // නැත්නම් Open කරන්න
+      setActivePlan(key); 
     }
   };
 
   return (
     <div className="page-container">
+      
+      
       <div className="header-section">
         <h1>Meal Plans</h1>
         <p>Tap on a plan to view the menu</p>
       </div>
 
-      <div className="card-list" style={{background:'transparent', boxShadow:'none'}}>
+      
+      <div className="card-list">
         
-        {/* Plans List */}
         {Object.keys(plans).map((key) => {
           const plan = plans[key];
           const isOpen = activePlan === key;
@@ -78,61 +80,80 @@ function MealPlans({ selectedDiet, setSelectedDiet }) {
             <div 
               key={key}
               onClick={() => togglePlan(key)}
+              
               style={{
-                background: 'white',
+                backgroundColor: 'white',
+                borderRadius: '22px', // Standard Radius
                 marginBottom: '15px',
-                borderRadius: '12px',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.06)', // Standard Shadow
+                border: isOpen ? `2px solid ${plan.color}` : '1px solid #f0f0f0',
                 overflow: 'hidden',
-                boxShadow: '0 2px 5px rgba(0,0,0,0.05)',
                 transition: 'all 0.3s ease',
-                border: isOpen ? `2px solid ${plan.color}` : '2px solid transparent'
+                cursor: 'pointer'
               }}
             >
               {/* Card Header (Always Visible) */}
               <div style={{
-                padding: '15px',
+                padding: '20px', 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                cursor: 'pointer',
-                background: isOpen ? `${plan.color}15` : 'white' // Open වුණාම පොඩි පාටක් එනවා
+                background: isOpen ? `${plan.color}15` : 'transparent'
               }}>
                 <div style={{display:'flex', alignItems:'center', gap:'15px'}}>
+                   {/* Dot Icon */}
                    <div style={{
                      width:'12px', height:'12px', borderRadius:'50%', 
-                     background: plan.color
+                     background: plan.color,
+                     flexShrink: 0
                    }}></div>
+                   
                    <div>
-                      <h3 style={{margin:0, fontSize:'16px', color:'#333'}}>{plan.title}</h3>
-                      <p style={{margin:0, fontSize:'12px', color:'#888'}}>{plan.desc}</p>
+                      <h4 style={{margin:'0 0 4px 0', fontSize:'16px', color:'#222', fontWeight:'600'}}>{plan.title}</h4>
+                      <p style={{margin:0, fontSize:'13px', color:'#888'}}>{plan.desc}</p>
                    </div>
                 </div>
+
                 {/* Arrow Icon */}
-                <div style={{transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition:'0.3s', color:'#888'}}>
+                <div style={{
+                    transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', 
+                    transition:'0.3s', 
+                    color:'#ccc',
+                    fontSize: '14px'
+                }}>
                   ▼
                 </div>
               </div>
 
               {/* Card Body (Visible only when Open) */}
               {isOpen && (
-                <div style={{padding: '0 15px 15px 15px', borderTop:'1px solid #eee'}}>
+                <div style={{padding: '0 20px 20px 20px', borderTop:'1px solid #eee'}}>
                    <div style={{marginTop:'15px'}}>
-                      <div style={{marginBottom:'10px'}}>
-                        <strong style={{color: plan.color, fontSize:'13px'}}>🥞 Breakfast</strong>
+                      
+                      {/* Breakfast */}
+                      <div style={{marginBottom:'12px'}}>
+                        <strong style={{color: plan.color, fontSize:'13px', display:'block', marginBottom:'2px'}}>🥞 Breakfast</strong>
                         <div style={{fontSize:'14px', color:'#555'}}>{plan.meals.breakfast}</div>
                       </div>
-                      <div style={{marginBottom:'10px'}}>
-                        <strong style={{color: plan.color, fontSize:'13px'}}>🍛 Lunch</strong>
+                      
+                      {/* Lunch */}
+                      <div style={{marginBottom:'12px'}}>
+                        <strong style={{color: plan.color, fontSize:'13px', display:'block', marginBottom:'2px'}}>🍛 Lunch</strong>
                         <div style={{fontSize:'14px', color:'#555'}}>{plan.meals.lunch}</div>
                       </div>
-                      <div style={{marginBottom:'10px'}}>
-                        <strong style={{color: plan.color, fontSize:'13px'}}>🥗 Dinner</strong>
+                      
+                      {/* Dinner */}
+                      <div style={{marginBottom:'12px'}}>
+                        <strong style={{color: plan.color, fontSize:'13px', display:'block', marginBottom:'2px'}}>🥗 Dinner</strong>
                         <div style={{fontSize:'14px', color:'#555'}}>{plan.meals.dinner}</div>
                       </div>
+                      
+                      {/* Snack */}
                       <div>
-                        <strong style={{color: plan.color, fontSize:'13px'}}>🍎 Snack</strong>
+                        <strong style={{color: plan.color, fontSize:'13px', display:'block', marginBottom:'2px'}}>🍎 Snack</strong>
                         <div style={{fontSize:'14px', color:'#555'}}>{plan.meals.snack}</div>
                       </div>
+
                    </div>
                 </div>
               )}
